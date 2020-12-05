@@ -5,10 +5,10 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="module_exports",
-    version="1.0.0",
+    version="1.1.0",
     author="Roman Shemyakin",
     author_email="ramon93i7@gmail.com",
-    description="One decrator to export them all :)",
+    description="One decorator to export them __all__ :)",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ramon93i7/module_exports",

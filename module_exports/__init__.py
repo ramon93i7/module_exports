@@ -1,22 +1,23 @@
 import sys
 
 
-def export_from_module(thing):
-    def _extract_all_list():
-        fr = sys._getframe(
-            1  # _extract_all_list
-            +
-            1  # export_from_module
-        )
-        all_list = fr.f_locals.get('__all__')
-        if all_list is None:
-            all_list = []
-            fr.f_locals['__all__'] = all_list
-        return all_list
+def _extract_all_list(*, _d=0):
+    # thanks Dadrik for `setdefault`
+    return sys._getframe(_d + 1) \
+            .f_locals.setdefault('__all__', [])
 
-    all_list = _extract_all_list()
-    all_list.append(thing.__name__)
+
+def _export_by_name(name, _d=0):
+    _extract_all_list(_d = _d + 1).append(name)
+
+
+def export_from_module(thing):
+    _export_by_name(thing.__name__, _d=1)
     return thing
 
 
-export_from_module(export_from_module)
+export_from_module.by_name = _export_by_name
+
+
+export_from_module(export_from_module)  # :)
+
