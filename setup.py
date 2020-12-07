@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="module_exports",
-    version="1.1.0",
+    version="1.2",
     author="Roman Shemyakin",
     author_email="ramon93i7@gmail.com",
     description="One decorator to export them __all__ :)",
